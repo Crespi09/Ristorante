@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 22, 2024 alle 11:37
+-- Creato il: Apr 23, 2024 alle 18:19
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -8114,6 +8114,7 @@ CREATE TABLE `locale` (
   `num_civico` varchar(255) NOT NULL,
   `via` varchar(255) NOT NULL,
   `postiMax` int(11) NOT NULL,
+  `tipologia` varchar(255) NOT NULL,
   `id_comune` int(11) NOT NULL,
   `azienda_pIVA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
