@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 23, 2024 alle 18:19
+-- Creato il: Apr 25, 2024 alle 11:11
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `codice_operatore` int(11) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `localeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,7 +56,7 @@ CREATE TABLE `cliente` (
   `nome` varchar(255) NOT NULL,
   `cognome` varchar(255) NOT NULL,
   `data_nascita` date NOT NULL,
-  `cell` varchar(255) NOT NULL,
+  `cell` varchar(14) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -8100,7 +8100,8 @@ CREATE TABLE `imprenditore` (
   `CF` varchar(16) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `cognome` varchar(255) NOT NULL,
-  `cell` varchar(255) NOT NULL
+  `cell` varchar(14) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -8111,7 +8112,7 @@ CREATE TABLE `imprenditore` (
 
 CREATE TABLE `locale` (
   `localeID` int(11) NOT NULL,
-  `num_civico` varchar(255) NOT NULL,
+  `num_civico` varchar(32) NOT NULL,
   `via` varchar(255) NOT NULL,
   `postiMax` int(11) NOT NULL,
   `tipologia` varchar(255) NOT NULL,
@@ -8128,7 +8129,7 @@ CREATE TABLE `locale` (
 CREATE TABLE `prenotazione` (
   `mail_prenotazione` varchar(255) NOT NULL,
   `localeID` int(11) NOT NULL,
-  `data_prenotazione` int(11) NOT NULL,
+  `data_prenotazione` datetime NOT NULL,
   `numero_posti` int(11) NOT NULL,
   `turnoID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -8325,7 +8326,7 @@ ALTER TABLE `locale`
 -- Indici per le tabelle `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  ADD PRIMARY KEY (`mail_prenotazione`,`localeID`),
+  ADD PRIMARY KEY (`mail_prenotazione`,`localeID`,`data_prenotazione`),
   ADD KEY `FK: turnoID` (`turnoID`),
   ADD KEY `localeID` (`localeID`);
 
