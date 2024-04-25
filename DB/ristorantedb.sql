@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 25, 2024 alle 11:11
+-- Creato il: Apr 25, 2024 alle 12:25
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `azienda` (
-  `partita_iva` int(11) NOT NULL,
+  `partita_iva` varchar(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `imprenditoreCF` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -8117,7 +8117,7 @@ CREATE TABLE `locale` (
   `postiMax` int(11) NOT NULL,
   `tipologia` varchar(255) NOT NULL,
   `id_comune` int(11) NOT NULL,
-  `azienda_pIVA` int(11) NOT NULL
+  `azienda_pIVA` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -8273,8 +8273,8 @@ INSERT INTO `province` (`id`, `id_regione`, `nome`, `sigla`, `latitudine`, `long
 
 CREATE TABLE `turno` (
   `turnoID` int(11) NOT NULL,
-  `ora_inizio` timestamp NULL DEFAULT NULL,
-  `ora_fine` timestamp NULL DEFAULT NULL
+  `ora_inizio` time DEFAULT NULL,
+  `ora_fine` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -8319,8 +8319,8 @@ ALTER TABLE `imprenditore`
 --
 ALTER TABLE `locale`
   ADD PRIMARY KEY (`localeID`),
-  ADD KEY `FK: azienda_piva` (`azienda_pIVA`),
-  ADD KEY `FK: comuniID` (`id_comune`);
+  ADD KEY `FK: comuniID` (`id_comune`),
+  ADD KEY `FK: parttaIva` (`azienda_pIVA`);
 
 --
 -- Indici per le tabelle `prenotazione`
@@ -8350,13 +8350,13 @@ ALTER TABLE `turno`
 -- AUTO_INCREMENT per la tabella `locale`
 --
 ALTER TABLE `locale`
-  MODIFY `localeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `localeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `turnoID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `turnoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Limiti per le tabelle scaricate
@@ -8384,8 +8384,8 @@ ALTER TABLE `comuni`
 -- Limiti per la tabella `locale`
 --
 ALTER TABLE `locale`
-  ADD CONSTRAINT `FK: azienda_piva` FOREIGN KEY (`azienda_pIVA`) REFERENCES `azienda` (`partita_iva`),
-  ADD CONSTRAINT `FK: comuniID` FOREIGN KEY (`id_comune`) REFERENCES `comuni` (`id`);
+  ADD CONSTRAINT `FK: comuniID` FOREIGN KEY (`id_comune`) REFERENCES `comuni` (`id`),
+  ADD CONSTRAINT `FK: parttaIva` FOREIGN KEY (`azienda_pIVA`) REFERENCES `azienda` (`partita_iva`);
 
 --
 -- Limiti per la tabella `prenotazione`
