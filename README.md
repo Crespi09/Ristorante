@@ -1,5 +1,6 @@
 # Ristorante
-Progetto Silva Ristorante
-Giga push dalla terronia
+
+configurare il proprie credenziali mysql in api/config.php
+
 
 
