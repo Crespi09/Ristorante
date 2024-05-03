@@ -21,31 +21,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $query = "SELECT localeID, data_prenotazione, numero_posti, turnoID FROM prenotazione WHERE mail_prenotazione=?";
 
 
 
+    $query = "SELECT locale.nome, prenotazione.localeID, prenotazione.data_prenotazione, prenotazione.numero_posti, turno.ora_inizio, turno.ora_fine 
+      FROM prenotazione 
+      INNER JOIN turno ON prenotazione.turnoID = turno.turnoID 
+      INNER JOIN locale ON prenotazione.localeID = locale.localeID 
+      WHERE prenotazione.mail_prenotazione = ?";
 
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 's', $data->mail_prenotazione);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $localeID, $data_prenotazione, $numero_posti, $turnoID);
-
-    $nome_query = "SELECT nome FROM locale WHERE localeID=?";
-
-    $stmt = mysqli_prepare($conn, $name_query);
-    mysqli_stmt_bind_param($stmt, 's', $localeID);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $nome_locale);
-
-
-    $turno_query = "SELECT ora_inizio, ora_fine FROM turno WHERE turnoID=?";
-
-    $stmt = mysqli_prepare($conn, $turno_query);
-    mysqli_stmt_bind_param($stmt, 's', $turnoID);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $ora_inizio, $ora_fine);
-
+    mysqli_stmt_bind_result($stmt,$nome_locale, $localeID, $data_prenotazione, $numero_posti, $ora_inizio,$ora_fine);
 
     $userArray = array();
 
@@ -54,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "nome" => $nome_locale,
         "data_prenotazione" => $data_prenotazione,
         "numero_posti" => $numero_posti,
-        "turno" => $ora_inizio."/".$ora_fine,       
+        "turno" => $ora_inizio . "/" . $ora_fine,
         "localeID" => $localeID,
       );
     }
