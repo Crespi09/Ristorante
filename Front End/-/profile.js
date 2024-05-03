@@ -12,8 +12,9 @@ async function getUserData() {
     
     //coglione
     const mail = {
-        mail : "carlino@example.it"
+        mail : "carlino@example.it" //TODO - prendere da sessione
     }
+
     axios.post(`http://localhost:80/Ristorante/api/v1/cliente/richiedi_dati.php`,  mail)
     .then(response => {
         // console.log(response.data); // debug
