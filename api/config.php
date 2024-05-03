@@ -7,7 +7,7 @@ class Database
 
   //credenziali mysql
   public $user = "root";
-  public $password = "";
+  public $password = "password";
 
 }
 
