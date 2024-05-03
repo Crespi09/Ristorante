@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 25, 2024 alle 12:25
+-- Creato il: Mag 03, 2024 alle 15:15
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -33,6 +33,15 @@ CREATE TABLE `admin` (
   `localeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `admin`
+--
+
+INSERT INTO `admin` (`codice_operatore`, `password`, `localeID`) VALUES
+(1, '123', 1),
+(2, '123', 2),
+(3, '123', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +53,15 @@ CREATE TABLE `azienda` (
   `nome` varchar(255) NOT NULL,
   `imprenditoreCF` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `azienda`
+--
+
+INSERT INTO `azienda` (`partita_iva`, `nome`, `imprenditoreCF`) VALUES
+('25664670590', 'azienda_3', 'MCRBWD35E01L599Z'),
+('39385450968', 'azienda_1', 'MGCTDN34M19E972A'),
+('48400450515', 'azienda_2', 'CJSKRP54D16C567H');
 
 -- --------------------------------------------------------
 
@@ -59,6 +77,15 @@ CREATE TABLE `cliente` (
   `cell` varchar(14) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `cliente`
+--
+
+INSERT INTO `cliente` (`mail`, `nome`, `cognome`, `data_nascita`, `cell`, `password`) VALUES
+('carlino@example.it', 'carlino', 'carloso', '1965-08-19', '+39 5276747629', '123'),
+('marchino@example.it', 'marchino', 'marcoso', '1998-05-12', '+39 3476744623', '123'),
+('pierino@example.it', 'pierino', 'pieroso', '2000-04-02', '+39 5679745623', '123');
 
 -- --------------------------------------------------------
 
@@ -8104,6 +8131,15 @@ CREATE TABLE `imprenditore` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `imprenditore`
+--
+
+INSERT INTO `imprenditore` (`CF`, `nome`, `cognome`, `cell`, `password`) VALUES
+('CJSKRP54D16C567H', 'Carlo', 'Previtali', '+39 3451981698', '123'),
+('MCRBWD35E01L599Z', 'Marco', 'Verdi', '+39 3461878938', '123'),
+('MGCTDN34M19E972A', 'Magellano', 'Locatelli', '+39 375 303506', '123');
+
 -- --------------------------------------------------------
 
 --
@@ -8112,6 +8148,7 @@ CREATE TABLE `imprenditore` (
 
 CREATE TABLE `locale` (
   `localeID` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
   `num_civico` varchar(32) NOT NULL,
   `via` varchar(255) NOT NULL,
   `postiMax` int(11) NOT NULL,
@@ -8119,6 +8156,15 @@ CREATE TABLE `locale` (
   `id_comune` int(11) NOT NULL,
   `azienda_pIVA` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `locale`
+--
+
+INSERT INTO `locale` (`localeID`, `nome`, `num_civico`, `via`, `postiMax`, `tipologia`, `id_comune`, `azienda_pIVA`) VALUES
+(1, 'daPio', ' 126', 'Via Belviglieri', 145, 'pizzeria', 20012, '25664670590'),
+(2, 'Osti', '35', 'Strada Bresciana', 55, 'osteria', 16024, '25664670590'),
+(3, 'mc', '34', 'Via del Pontiere', 12, 'paninoteca', 76001, '39385450968');
 
 -- --------------------------------------------------------
 
@@ -8133,6 +8179,16 @@ CREATE TABLE `prenotazione` (
   `numero_posti` int(11) NOT NULL,
   `turnoID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `prenotazione`
+--
+
+INSERT INTO `prenotazione` (`mail_prenotazione`, `localeID`, `data_prenotazione`, `numero_posti`, `turnoID`) VALUES
+('carlino@example.it', 1, '2024-07-17 12:18:29', 3, 1),
+('carlino@example.it', 2, '2024-05-03 14:28:11', 10, 2),
+('marchino@example.it', 1, '2024-07-17 12:18:29', 5, 1),
+('pierino@example.it', 2, '2024-06-10 07:19:28', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -8276,6 +8332,14 @@ CREATE TABLE `turno` (
   `ora_inizio` time DEFAULT NULL,
   `ora_fine` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `turno`
+--
+
+INSERT INTO `turno` (`turnoID`, `ora_inizio`, `ora_fine`) VALUES
+(1, '11:00:00', '15:00:00'),
+(2, '18:00:00', '24:00:00');
 
 --
 -- Indici per le tabelle scaricate

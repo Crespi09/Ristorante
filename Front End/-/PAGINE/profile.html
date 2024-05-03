@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 
 <html>
 
@@ -212,79 +212,33 @@
                           <div class="card h-100">
                             <div class="card-body">
                               <div class="title" style="display: flex; padding-bottom: 20px;">
-                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Prenotazioni</i>Ristoranti</h6>
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2" style="color: #00C1B7;">Prenotazioni</i>Ristoranti</h6>
                                 <!-- <input type = "text" style="right: 0; position: absolute; margin-right: 20px;"> -->
-                               
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="right: 0; position: absolute; max-width: 200px; margin-right: 20px;">
-                                <div class="input-group-prepend">
-                                  <!-- <span class="input-group-text" id="inputGroup-sizing-sm">Small</span> -->
-                                  <button>Cerca</button>
+                                <div class="input-group-prepend" style="right: 0; position: absolute; max-width: 200px; margin-right: 20px;">                                 
+                                   <!-- TODO - fare chiamata API onchange -->
+                                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" >
+                                  <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: transparent; border-color: transparent;">
+                                    <lord-icon
+                                      src="https://cdn.lordicon.com/kkvxgpti.json"
+                                      trigger="hover"
+                                      colors="primary:#00C1B7"
+                                      style="width:25px;height:25px">
+                                  </lord-icon>
+                                  </span>
                                 </div>
 
                               </div>
-                              <div class="table-responsive" style="max-height: 400px; overflow-y: auto;" >
                                 <table class="table table-hover">
                                   <thead>
                                     <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">First</th>
-                                      <th scope="col">Last</th>
-                                      <th scope="col">Handle</th>
+                                      <th scope="col">Nome</th>
+                                      <th scope="col">Data</th>
+                                      <th scope="col">n_Posti</th>
+                                      <th scope="col">Turno</th>
                                     </tr>
                                   </thead>
-                                  <tbody style = "cursor: pointer;">
-                                    <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
-                                      <td>Otto</td>
-                                      <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                      <td>Thornton</td>
-                                      <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td colspan="2">Larry the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
+                                  <tbody id = "tablePrenotBody" style = "cursor: pointer;">
+                                      <!-- PRENOTAZIONE PRESE DA API -->
                                   </tbody>
                                 </table>
                               </div>
