@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       $insert_query = "INSERT INTO prenotazione (mail_prenotazione, data_prenotazione, localeID, numero_posti, turnoID) VALUES (?, ?, ?, ?, ?)"; //data prenotazione e data modifica?
       $insert_stmt = mysqli_prepare($conn, $insert_query);
-      mysqli_stmt_bind_param($insert_stmt, 'ssssss', $data->mail_prenotazione, $data->localeID, $data->cognome, $data->numero_posti, $data->turnoID);
+      mysqli_stmt_bind_param($insert_stmt, 'sssss', $data->mail_prenotazione, $data->localeID, $data->cognome, $data->numero_posti, $data->turnoID);
       mysqli_stmt_execute($insert_stmt);
       if (!mysqli_stmt_execute($insert_stmt)) {
         throw new Exception("Errore durante l'inserimento dei dati: " . mysqli_error($conn));

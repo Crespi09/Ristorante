@@ -10,22 +10,20 @@ include_once "../../config.php";
 $db = new Database();
 if ($_SERVER["REQUEST_METHOD"] == "PUT") {
   $data = json_decode(file_get_contents("php://input"));
-  if (!empty($data->mail) && !empty($data->nome) && !empty($data->cognome) && !empty($data->data_nascita) && !empty($data->cell) && !empty($data->password)) {
+  if (!empty($data->CF) && !empty($data->nome) && !empty($data->cognome) && !empty($data->cell) && !empty($data->password)) {
     try {
       $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
 
       if (!$conn) {
         throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
       }
-
-
-      $update_query = "UPDATE cliente SET nome = ?, cognome=?,  cell = ?,  password = ? WHERE mail = ?";
+      
+      $update_query = "UPDATE imprenditore SET nome = ?, cognome=?,  cell = ?,  password = ? WHERE CF = ?";
       $update_stmt = mysqli_prepare($conn, $update_query);
-      mysqli_stmt_bind_param($update_stmt, 'ssss', $data->nome, $data->cognome, $data->cell, $data->password, $data->mail);
+      mysqli_stmt_bind_param($update_stmt, 'sssss', $data->nome, $data->cognome, $data->cell, $data->password, $data->CF);
       mysqli_stmt_execute($update_stmt);
-
       mysqli_stmt_close($update_stmt);
-      mysqli_close($conn);
+      mysqli_close($conn);     
 
       echo json_encode(array("message" => "Dati cliente modificati con successo."));
     } catch (Exception $e) {

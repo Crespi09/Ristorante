@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT") {
       // Modifica del turno id e del numero dei posti
       $update_query = "UPDATE prenotazione SET numero_posti = ?, turnoID=? WHERE mail_prenotazione = ? AND data_prenotazione = ? AND localeID = ?"; //manca il giorno in cui si mangia
       $update_stmt = mysqli_prepare($conn, $update_query);
-      mysqli_stmt_bind_param($update_stmt, 'sss', $data->numero_posti, $data->turnoID, $data->mail_prenotazione, $data->data_prenotazione, $data->localeID );
+      mysqli_stmt_bind_param($update_stmt, 'sssss', $data->numero_posti, $data->turnoID, $data->mail_prenotazione, $data->data_prenotazione, $data->localeID );
       mysqli_stmt_execute($update_stmt);
 
       mysqli_stmt_close($update_stmt);

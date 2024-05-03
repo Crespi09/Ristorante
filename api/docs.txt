@@ -1,0 +1,57 @@
+api docc
+
+cliente/login.php
+
+POST
+input {"mail","password"}
+output {"mail","nome","cognome"}
+
+cliente/modifica_dati.php
+PUT
+input {"mail","nome","cognome","data_nascita","cell","password"}
+output {"message"}
+
+cliente/prenotazione.php
+POST
+input {"mail_prenotazione","turnoID","localeID","numero_posti"}
+output {"message"}
+
+cliente/register.php
+POST
+input {"mail","nome","cognome","data_nascita","cell","password"}
+ouput{"message"}
+
+cliente/richiedi_dati.php
+POST
+input {"mail"}
+output {"mail","nome","cognome",data_nascita","cell","password"}
+
+imprenditore/login.php
+POST
+input {"CF,"password"}
+output {"CF","login","cognome"}
+
+imprenditore/modifica_dati.php
+PUT
+input {"CF","nome","cognome","cell","password"}
+output {"message"}
+
+imprenditore/nuovo_locale.php
+POST
+input {"localeID","num_civico","via","postiMax","tipologia","id_comune","azienda_pIVA"}
+output {"message"}
+
+imprenditore/register.php
+POST
+input {"CF","nome","cognome","cell","password"}
+output {"message"}
+
+imprenditore/richiedi_dati.php
+POST
+input {"CF"}
+output {"CF","nome","cognome","cell","password"}
+
+locale/ricerca.php
+POST
+input {"id_comune","postiMax","tipologia"}
+output {"localeID","num_civico","via","postiMax","tipologia","id_comuni","azienda_pIVA"}
