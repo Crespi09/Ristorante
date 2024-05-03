@@ -3,77 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ricerstaranti | Home</title>
 
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 
 </head>
-<body>
+<body class="bodyBG">
+
+    <div class="HomeBackground">
+        <img src="../MEDIA/BG/BG1.jpg" alt="bg" style="z-index: -2; max-width: 100%; height: auto;" width="100%">
+    </div>
 
     <div class="navbar">
         
         <div class="navbar-container">
             <div class="navbar-content">
-                <DIV class="TITLE NSELECT TITLE2 CENTER"> RICERCASTARANTI</DIV>
-            </div>
-            <div class="navbar-content">
-                <div class="navbar-linktext ">
-                    <input type="text" class="SearchBar CENTER"> 
-                </div>
-                
-            </div>
-            <div class="navbar-content">
-                <div class="navbar-linktext CENTER">
-                    <span class="material-symbols-outlined NSELECT CENTER" style="cursor: pointer; padding-right: 20px;">
-                        search
-                    </span>
-                </div>
-            </div>
-            <div class="navbar-content">
-                <div class="navbar-linktext CENTER">
-                    <span class="material-symbols-outlined NSELECT CENTER" style="cursor: pointer;">
-                        filter_alt
-                    </span>
-                </div>
-            </div>
-            <div class="navbar-content">
-                <div class="navbar-linktext">
-                    <span class="material-symbols-outlined NSELECT CENTER" style="cursor: pointer; padding-right: 30px;">
-                        person
-                    </span>
-                </div>
+                <DIV class="TITLE NSELECT TITLE2" style="padding-left: 40px"> RICERCASTARANTI</DIV>
             </div>
         </div>
+
+        <div style="position: absolute; top: 0; right: 0px; padding-top: 16px;" class="navbar-content">
+
+            <span class="material-symbols-outlined NSELECT" style="cursor: pointer; font-size: 69px;" onclick="showNhidden('HomeProfileDropDown', 1)">
+                person
+            </span>
+
+        </div>
+
+        <div class="navbar-content HomeProfileDropDown" style="position: absolute; display: none; padding: 10px;" id="HomeProfileDropDown">
+
+            <div style="padding-top: 100px;"></div>
+            <div style="height: 130px; width: 100%; background-color: rgb(20, 20, 20); border-radius: 15px; border: 3px solid white;">
+                <div style="box-sizing: border-box; align-content: space-evenly; display: grid; margin: 0px; place-items: center; color: aliceblue; height: 100%;">
+
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.4s ease-in-out;" class="NSELECT" onclick=""> MODIFICA PROFILO</div>
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.5s ease-in-out;" class="NSELECT" onclick=""> LOGOUT</div>
+                </div>
+
+            </div>
+
+        </div>
+
     
     </div>
 
-    <div style="height: 150px;"> </div>
+    <div style="height: 300px;"> </div>
 
-    <hr>
+    <div class="homeContainer">
 
-    <div style="height: 50px;"> </div>
+        <div class="homeCentralDiv">
+            <center>
+            <h1 style="font-size: 55px; animation: homeCentralDivContent 2s ease-in-out;" class="NSELECT">
+                CERCA RISTARANTI : 
+            </h1>
 
-        <div class="B-UserHomePage CENTER">
-            <div class="B-PreviewRistorante CENTER">
-                <div class="B-Image"> immagine </div>
-                <div class="B-Desc">
-                    <div class="B-Titolo"></div>
-                    <div class="B-Desc"></div>
-                    <div class="B-Rating"></div>
-                </div>
-            </div>
+            <div style="display: grid; grid-template-columns: 90% 5% 5%; margin: auto; width: 50%; animation: homeCentralDivContent 2.3s ease-in-out;">
+
+            <input type="text" class="SearchBar">
+            <span class="material-symbols-outlined NSELECT" style="cursor: pointer; animation: homeCentralDivContent 2.5s ease-in-out;">
+                search
+            </span>
+            <span class="material-symbols-outlined NSELECT" style="cursor: pointer; animation: homeCentralDivContent 2.9s ease-in-out;" onclick="showNhidden('HomeFilterDropDown', 2)">
+                filter_alt
+            </span>
+            </center>
+
         </div>
 
-        <div style="height: 50px;"> </div>
+    </div>
 
-        <hr>
+    </div> 
+
+    <center>
+    <div style="padding-top: 20px;" ></div>
+    <div class="HomeFilterDropDown" style="display: none; padding: 10PX;" id="HomeFilterDropDown">
+
+        <DIV style="display: grid; grid-template-columns: auto auto; margin: auto; box-sizing: border-box; align-content: space-evenly;">
+
+            <div style="font-family: 'Varela Round', sans-serif; font-weight: 400; font-style: normal;"> TIPOLOGIA: </div>
+
+            <select>
+                <option id="" value="NULL">NULL</option>
+                <option id="" value="A">A</option>
+                <option id="" value="B">B</option>
+                <option id="" value="C">C</option>
+                <option id="" value="D">D</option>
+                <option id="" value="E">E</option>
+            </select>
+
+    </DIV>
+        
+    </div>
+    </center>
+
+    <div style="height: 300px;"> </div>
 
     <div class="footer">
         1 pesos 2 pesos 3 pesos 4 pesos 5 pesos 6 pesos 78 trilioni di pesos <br>
         i diritti sono riservati a queste grandissime noci
         </div>
     </div>
+
+    <script src="../script.js"></script>
     
 </body>
 </html>

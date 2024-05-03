@@ -1,34 +1,51 @@
 // Ottieni l'URL corrente
 const currentUrl = window.location.href;
-
-// Crea un oggetto URL per analizzare l'URL
 const url = new URL(currentUrl);
-
-// Ottieni il valore del parametro "id"
 const id = url.searchParams.get('id');
 
-// Ora puoi utilizzare il valore di "id"
-console.log('ID:', id);
+const indirizzo = document.getElementById('indirizzo');
+const posti = document.getElementById('posti');
+const tipologia = document.getElementById('tipologia');
+
+let postiMax=0;
+let postiLiberi;
 
 
-axios.post(`http://localhost:80/Ristorante/api/v1/cliente/richiedi_dati.php`,  {id:id})
-.then(response => {
-  // console.log(response.data); // debug
-  userData = {
-      nome : response.data.nome,
-      cognome : response.data.cognome,
-      mail : response.data.mail,
-      data_nascita : response.data.data_nascita,
-      cell : response.data.cell
-  }
+axios.post(`http://localhost:80/Ristorante/api/v1/locale/richiedi_dati.php`, { localeID: id })
+  .then(response => {
+    userData = {
+      civico: response.data.num_civico,
+      via: response.data.via,
+      posti: response.data.postiMax,
+      tipologia: response.data.tipologia,
+      id_comune: response.data.id_comune,
+      partita_iva: response.data.azienda_pIVA
+    }
 
-  username.setAttribute('value', userData.nome + " " + userData.cognome);
-  fullName.setAttribute('value', userData.nome + " " + userData.cognome);
-  email.setAttribute('value', userData.mail);
-  cell.setAttribute('value', userData.cell);
-  data_nascita.setAttribute('value', userData.data_nascita);
+    postiMax=userData.posti;
 
-})
-.catch(error => {
-  console.error("Errore richiesta dati user", error);
-}); 
+    indirizzo.setAttribute('value', userData.via + " " + userData.civico);
+    tipologia.setAttribute('value', userData.tipologia);
+
+  })
+  .catch(error => {
+    console.error("Errore richiesta dati locale", error);
+  });
+
+
+
+axios.post(`http://localhost:80/Ristorante/api/v1/locale/conto_prenotazioni.php`, { localeID: id })
+  .then(response => {
+    userData = {
+      numero_prenotazioni: response.data.numero_prenotazioni
+    }
+    postiLiberi=postiMax-userData.numero_prenotazioni;
+
+    posti.setAttribute('value', postiLiberi);
+
+   
+
+  })
+  .catch(error => {
+    console.error("Errore richiesta numero prenotazioni ", error);
+  }); 
