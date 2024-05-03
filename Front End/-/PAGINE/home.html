@@ -37,8 +37,8 @@
             <div style="height: 130px; width: 100%; background-color: rgb(20, 20, 20); border-radius: 15px; border: 3px solid white;">
                 <div style="box-sizing: border-box; align-content: space-evenly; display: grid; margin: 0px; place-items: center; color: aliceblue; height: 100%;">
 
-                    <div style="cursor: pointer; animation: homeCentralDivContent 0.4s ease-in-out;" class="NSELECT" onclick=""> MODIFICA PROFILO</div>
-                    <div style="cursor: pointer; animation: homeCentralDivContent 0.5s ease-in-out;" class="NSELECT" onclick=""> LOGOUT</div>
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.4s ease-in-out;" class="NSELECT" onclick="window.location.href = 'profile.html'"> MODIFICA PROFILO</div>
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.5s ease-in-out;" class="NSELECT" onclick="window.location.href = '../../index.html'"> LOGOUT</div>
                 </div>
 
             </div>
@@ -84,17 +84,22 @@
             <div style="font-family: 'Varela Round', sans-serif; font-weight: 400; font-style: normal;"> TIPOLOGIA: </div>
 
             <select>
-                <option id="" value="NULL">NULL</option>
-                <option id="" value="A">A</option>
-                <option id="" value="B">B</option>
-                <option id="" value="C">C</option>
-                <option id="" value="D">D</option>
-                <option id="" value="E">E</option>
+                <option id="" value="NULL">NULL     </option>
+                <option id="" value="A">A           </option>
+                <option id="" value="B">B           </option>
+                <option id="" value="C">C           </option>
+                <option id="" value="D">D           </option>
+                <option id="" value="E">E           </option>
             </select>
 
-    </DIV>
+        </DIV>
         
     </div>
+    </center>
+
+    <center>
+        <div class="ResultQueryRicercaBox" style="display: none; padding: 10PX;" id="HResultQueryRicercaBox">
+        </div>
     </center>
 
     <div style="height: 300px;"> </div>

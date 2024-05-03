@@ -1,24 +1,60 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
 
-  <title>Ricercastaranti | Ristorante</title>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerstaranti | Ristorante</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- LINKS -->
-  <link rel="stylesheet" type="text/css" href="../css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 
 </head>
-
 <body>
 
-  <script src="../ristorante.js"></script>
+    <div class="navbar">
+        
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <DIV class="TITLE NSELECT TITLE2" style="padding-left: 40px; cursor: pointer;" onclick="window.location.href = 'home.html'"> RICERCASTARANTI</DIV>
+            </div>
+        </div>
 
+        <div style="position: absolute; top: 0; right: 0px; padding-top: 16px;" class="navbar-content">
 
+            <span class="material-symbols-outlined NSELECT" style="cursor: pointer; font-size: 69px;" onclick="showNhidden('HomeProfileDropDown', 1)">
+                person
+            </span>
+
+        </div>
+
+        <div class="navbar-content HomeProfileDropDown" style="position: absolute; display: none; padding: 10px;" id="HomeProfileDropDown">
+
+            <div style="padding-top: 100px;"></div>
+            <div style="height: 130px; width: 100%; background-color: rgb(20, 20, 20); border-radius: 15px; border: 3px solid white;">
+                <div style="box-sizing: border-box; align-content: space-evenly; display: grid; margin: 0px; place-items: center; color: aliceblue; height: 100%;">
+
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.4s ease-in-out;" class="NSELECT" onclick="window.location.href = 'profile.html'"> MODIFICA PROFILO</div>
+                    <div style="cursor: pointer; animation: homeCentralDivContent 0.5s ease-in-out; " class="NSELECT" onclick="window.location.href = '../../index.html'"> LOGOUT</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    
+    </div>
+
+    <div style="height: 300px;"> </div>
+
+    <div style="height: 300px;"> </div>
+
+    <div class="footer">
+        1 pesos 2 pesos 3 pesos 4 pesos 5 pesos 6 pesos 78 trilioni di pesos <br>
+        i diritti sono riservati a queste grandissime noci
+        </div>
+    </div>
+
+    <script src="../script.js"></script> <script src="../ristorante.js"></script>
+    
 </body>
-
-
 </html>
