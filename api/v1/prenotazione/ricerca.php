@@ -13,43 +13,62 @@ $db = new Database();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = json_decode(file_get_contents("php://input"));
 
-    try {
-      $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
+  try {
+    $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
 
-      if (!$conn) {
-        throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
-      }
-
-
-      $query = "SELECT localeID, data_prenotazione, numero_posti, turnoID FROM prenotazione WHERE mail_prenotazione=?";
-
-
-      $stmt = mysqli_prepare($conn, $query);
-      mysqli_stmt_bind_param($stmt, 's', $data->mail_prenotazione);
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_bind_result($stmt, $localeID, $data_prenotazione, $numero_posti, $turnoID);
-  
-      $userArray = array();
-  
-      while (mysqli_stmt_fetch($stmt)) {
-        $userArray[] = array(
-          "localeID" => $localeID,
-          "data_prenotazione" => $data_prenotazione,
-          "numero_posti" => $numero_posti,
-          "turnoID" => $turnoID
-        );
-      }
-
-      mysqli_stmt_close($stmt);
-      mysqli_close($conn);
-
-      echo json_encode($userArray);
-
-    } catch (Exception $e) {
-      http_response_code(401);
-      echo json_encode(array("message" => "errore server - ".$e->getMessage()));
+    if (!$conn) {
+      throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
     }
-  
+
+
+    $query = "SELECT localeID, data_prenotazione, numero_posti, turnoID FROM prenotazione WHERE mail_prenotazione=?";
+
+
+
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 's', $data->mail_prenotazione);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $localeID, $data_prenotazione, $numero_posti, $turnoID);
+
+    $nome_query = "SELECT nome FROM locale WHERE localeID=?";
+
+    $stmt = mysqli_prepare($conn, $name_query);
+    mysqli_stmt_bind_param($stmt, 's', $localeID);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $nome_locale);
+
+
+    $turno_query = "SELECT ora_inizio, ora_fine FROM turno WHERE turnoID=?";
+
+    $stmt = mysqli_prepare($conn, $turno_query);
+    mysqli_stmt_bind_param($stmt, 's', $turnoID);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $ora_inizio, $ora_fine);
+
+
+    $userArray = array();
+
+    while (mysqli_stmt_fetch($stmt)) {
+      $userArray[] = array(
+        "nome" => $nome_locale,
+        "data_prenotazione" => $data_prenotazione,
+        "numero_posti" => $numero_posti,
+        "turno" => $ora_inizio."/".$ora_fine,       
+        "localeID" => $localeID,
+      );
+    }
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+    echo json_encode($userArray);
+
+  } catch (Exception $e) {
+    http_response_code(401);
+    echo json_encode(array("message" => "errore server - " . $e->getMessage()));
+  }
+
 
   //postiMax tipologia id_comune
 
