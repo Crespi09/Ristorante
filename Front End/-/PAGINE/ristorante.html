@@ -137,7 +137,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+                  <h6 class="mb-0">Nome locale</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="text" class="form-control" placeholder="Full Name" aria-describedby="basic-addon1"
@@ -149,11 +149,11 @@
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                  <h6 class="mb-0">Indirizzo</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1"
-                    id="email" value="" disabled style="background-color: transparent;
+                    id="indirizzo" value="" disabled style="background-color: transparent;
                                         border-color: transparent;
                                         text-align: left;">
                 </div>
@@ -161,10 +161,10 @@
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                  <h6 class="mb-0">Posti Liberi</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="tel" class="form-control" placeholder="Cell" aria-describedby="basic-addon1" id="cell"
+                  <input type="tel" class="form-control" placeholder="Cell" aria-describedby="basic-addon1" id="posti"
                     value="" disabled style="background-color: transparent;
                                         border-color: transparent;
                                         text-align: left;">
@@ -173,7 +173,20 @@
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Born</h6>
+                  <h6 class="mb-0">Tipologia</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1"
+                    id="tipologia" value="" disabled style="background-color: transparent;
+                                        border-color: transparent;
+                                        text-align: left;">
+                </div>
+              </div>
+              <hr>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">//todo comune?</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="date" class="form-control" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1"
@@ -183,6 +196,7 @@
                 </div>
               </div>
               <hr>
+              
               <div class="row">
                 <div class="col-sm-12">
                   <button type="button" class="btn btn-outline-warning" onclick="updateUserData()">
