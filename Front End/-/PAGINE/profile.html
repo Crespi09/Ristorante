@@ -36,7 +36,7 @@
 
 
 
-    <body style="background-color: #F16049;">
+    <body style="background-color: #ffff;">
         <div class="container">
             <div class="main-body">
             
@@ -59,7 +59,7 @@
                             <lord-icon
                                 src="https://cdn.lordicon.com/kthelypq.json"
                                 trigger="in"
-                                colors="primary:#9A67A5"
+                                colors="primary:#00C1B7"
                                 delay="500"
                                 state="in-account"
                                 style="width:200px;height:200px"
@@ -90,7 +90,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="card mt-3">
+                      <!-- <div class="card mt-3">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
@@ -113,7 +113,7 @@
                             <span class="text-secondary">bootdey</span>
                           </li>
                         </ul>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="col-md-8">
                       <div class="card mb-3">
@@ -197,7 +197,7 @@
                           <div class="row">
                             <div class="col-sm-12">
                               <button type="button" class="btn btn-outline-warning" onclick="updateUserData()">
-                                
+                                Edit
                               </button>
                             </div>
                           </div>
@@ -206,10 +206,89 @@
         
                       <div class="row gutters-sm">
                         <div class="col-sm mb-3">
+
+                          
+
                           <div class="card h-100">
                             <div class="card-body">
-                              <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                              <small>Web Design</small>
+                              <div class="title" style="display: flex; padding-bottom: 20px;">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Prenotazioni</i>Ristoranti</h6>
+                                <!-- <input type = "text" style="right: 0; position: absolute; margin-right: 20px;"> -->
+                               
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="right: 0; position: absolute; max-width: 200px; margin-right: 20px;">
+                                <div class="input-group-prepend">
+                                  <!-- <span class="input-group-text" id="inputGroup-sizing-sm">Small</span> -->
+                                  <button>Cerca</button>
+                                </div>
+
+                              </div>
+                              <div class="table-responsive" style="max-height: 400px; overflow-y: auto;" >
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">First</th>
+                                      <th scope="col">Last</th>
+                                      <th scope="col">Handle</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody style = "cursor: pointer;">
+                                    <tr>
+                                      <th scope="row">1</th>
+                                      <td>Mark</td>
+                                      <td>Otto</td>
+                                      <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">2</th>
+                                      <td>Jacob</td>
+                                      <td>Thornton</td>
+                                      <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td colspan="2">Larry the Bird</td>
+                                      <td>@twitter</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <!-- <small>Web Design</small>
                               <div class="progress mb-3" style="height: 5px">
                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
@@ -228,7 +307,7 @@
                               <small>Backend API</small>
                               <div class="progress mb-3" style="height: 5px">
                                 <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </div>
