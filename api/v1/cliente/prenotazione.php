@@ -17,6 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (!$conn) {
         throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
       }
+        
+      $check_query = "SELECT postiMax FROM locale WHERE localeID=?";
+      $check_stmt = mysqli_prepare($conn, $check_query);
+      mysqli_stmt_bind_param($check_stmt, 's', $data->localeID);
+      mysqli_stmt_execute($check_stmt);
+      mysqli_stmt_bind_result($check_stmt, $postiMax);
+      mysqli_stmt_fetch($check_stmt);
+      mysqli_stmt_close($check_stmt);
+
+      if ($data->numero_posti > $postiMax) {
+        echo json_encode(array("message"=>"Non ci sono abbastanza posti disponibili"));
+        exit();
+      }
+
       //check se la prenotazione esista già nello stesso turno, chiavi primarie??
 
       $insert_query = "INSERT INTO prenotazione (mail_prenotazione, data_prenotazione, localeID, numero_posti, turnoID) VALUES (?, ?, ?, ?, ?)"; //data prenotazione e data modifica?
@@ -43,3 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   http_response_code(405);
   echo json_encode(array("message" => "Metodo non consentito."));
 }
+
+
+
