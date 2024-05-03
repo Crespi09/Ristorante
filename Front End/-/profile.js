@@ -54,12 +54,28 @@ function changeUserIconAttribute(){
 
 }
 
+// -----------------FUNZIONI EDIT BTN-------------------------------------------
+
 // funzione che aggiorna dati utente
 function updateUserData(){
     fullName.removeAttribute('disabled');
     cell.removeAttribute('disabled');
 
+    fullName.style.borderColor = "black";
+    cell.style.borderColor = "black";
+
 }
+function handleEditHoverIn(){
+    console.log("edit mouse hover");
+    fullName.style.borderColor = "black";
+    cell.style.borderColor = "black";
+}
+
+function handleEditHoverOut(){
+    fullName.style.borderColor = "transparent";
+    cell.style.borderColor = "transparent";
+}
+//----------------------------------------------------------------------------
 
 // funzione che prende le prenotazioni dell'utente
 function getPrenotazioniData(){
