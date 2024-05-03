@@ -54,8 +54,6 @@ function changeUserIconAttribute(){
 
 }
 
-// -----------------FUNZIONI EDIT BTN-------------------------------------------
-
 // funzione che aggiorna dati utente
 function updateUserData(){
     fullName.removeAttribute('disabled');
@@ -63,10 +61,9 @@ function updateUserData(){
 
     fullName.style.borderColor = "black";
     cell.style.borderColor = "black";
-
 }
+
 function handleEditHoverIn(){
-    console.log("edit mouse hover");
     fullName.style.borderColor = "black";
     cell.style.borderColor = "black";
 }
@@ -75,7 +72,6 @@ function handleEditHoverOut(){
     fullName.style.borderColor = "transparent";
     cell.style.borderColor = "transparent";
 }
-//----------------------------------------------------------------------------
 
 // funzione che prende le prenotazioni dell'utente
 function getPrenotazioniData(){
@@ -89,9 +85,15 @@ function getPrenotazioniData(){
         
         response.data.forEach(prenot => {
             let tr = document.createElement("tr");
-            Object.values(prenot).forEach(value => {
+            Object.values(prenot).forEach((value, index, array) => {
                 let td = document.createElement("td");
                 td.innerText = value;
+                
+                //serve per nascondere l'ultima colonna cioè quella dell'id -> che mi servirà più avanti per
+                if(index === array.length -1){
+                    td.style.display = "none";
+                }
+                
                 tr.appendChild(td);
             });
             document.getElementById("tablePrenotBody").appendChild(tr);
