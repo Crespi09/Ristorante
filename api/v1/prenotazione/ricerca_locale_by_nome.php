@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = json_decode(file_get_contents("php://input"));
 
   try {
+    $nome_locale_formatted="%".$data->nome_locale."%";
     $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
 
     if (!$conn) {
@@ -21,33 +22,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $query = "SELECT localeID, num_civico, via, postiMax, tipologia, id_comune, azienda_pIVA, nome FROM locale
-            JOIN comuni ON locale.id_comune = comuni.id 
-            WHERE 1 = 1 
-            AND (comuni.id = ? OR ? IS NULL) 
-            AND (locale.tipologia = ? OR ? IS NULL)
-            AND (locale.nome LIKE ? OR ? IS NULL)";
+    $query = "SELECT locale.localeID, prenotazione.data_prenotazione, prenotazione.numero_posti, prenotazione.turnoID, locale.nome
+     FROM prenotazione
+     INNER JOIN locale ON prenotazione.localeID = locale.localeID 
+      WHERE prenotazione.mail_prenotazione=? AND locale.nome LIKE ?";
 
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ssssss', $data->id_comune, $data->id_comune, $data->postiMax, $data->postiMax, $data->tipologia, $data->tipologia);
+    mysqli_stmt_bind_param($stmt, 'ss', $data->mail_prenotazione, $nome_locale_formatted);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $localeID, $num_civico, $via, $postiMax, $tipologia, $id_comune, $azienda_pIVA, $nome);
+    mysqli_stmt_bind_result($stmt, $localeID, $data_prenotazione, $numero_posti, $turnoID,$locale_nome);
 
     $userArray = array();
 
     while (mysqli_stmt_fetch($stmt)) {
       $userArray[] = array(
-        "nome" => $nome,
         "localeID" => $localeID,
-        "num_civico" => $num_civico,
-        "via" => $via,
-        "postiMax" => $postiMax,
-        "tipologia" => $tipologia,
-        "id_comune" => $id_comune,
-        "azienda_pIVA" => $azienda_pIVA
+        "data_prenotazione" => $data_prenotazione,
+        "numero_posti" => $numero_posti,
+        "turnoID" => $turnoID,
+        "locale_nome"=>$locale_nome
       );
     }
-    
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
@@ -60,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  //postiMax tipologia id_comune
 
 } else {
   http_response_code(405);
