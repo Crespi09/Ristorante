@@ -13,50 +13,52 @@ $db = new Database();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = json_decode(file_get_contents("php://input"));
 
-    try {
-      $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
+  try {
+    $conn = mysqli_connect($db->host, $db->user, $db->password, $db->db_name);
 
-      if (!$conn) {
-        throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
-      }
-
-
-      $query = "SELECT localeID, num_civico, via, postiMax, tipologia, id_comune, azienda_pIVA FROM locale
-          JOIN comuni ON locale.id_comune = comuni.id 
-          WHERE 1 = 1 
-          AND (comuni.id = ? OR ? IS NULL) 
-          AND (locale.postiMax = ? OR ? IS NULL) 
-          AND (locale.tipologia = ? OR ? IS NULL)";
-
-      $stmt = mysqli_prepare($conn, $query);
-      mysqli_stmt_bind_param($stmt, 'ssssss', $data->id_comune, $data->id_comune, $data->postiMax, $data->postiMax, $data->tipologia, $data->tipologia);
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_bind_result($stmt, $localeID, $num_civico, $via, $postiMax, $tipologia, $id_comune, $azienda_pIVA);
-
-      $userArray = array();
-
-      while (mysqli_stmt_fetch($stmt)) {
-        $userArray[] = array(
-          "localeID" => $localeID,
-          "num_civico" => $num_civico,
-          "via" => $via,
-          "postiMax" => $postiMax,
-          "tipologia" => $tipologia,
-          "id_comune" => $id_comune,
-          "azienda_pIVA" => $azienda_pIVA
-        );
-      }
-
-      mysqli_stmt_close($stmt);
-      mysqli_close($conn);
-
-      echo json_encode($userArray);
-
-    } catch (Exception $e) {
-      http_response_code(401);
-      echo json_encode(array("message" => "errore server - ".$e->getMessage()));
+    if (!$conn) {
+      throw new Exception("Connessione al database fallita: " . mysqli_connect_error());
     }
-  
+
+
+    $query = "SELECT localeID, num_civico, via, postiMax, tipologia, id_comune, azienda_pIVA, nome FROM locale
+            JOIN comuni ON locale.id_comune = comuni.id 
+            WHERE 1 = 1 
+            AND (comuni.id = ? OR ? IS NULL) 
+            AND (locale.tipologia = ? OR ? IS NULL)
+            AND (locale.nome LIKE ? OR ? IS NULL)";
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'ssssss', $data->id_comune, $data->id_comune, $data->postiMax, $data->postiMax, $data->tipologia, $data->tipologia);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $localeID, $num_civico, $via, $postiMax, $tipologia, $id_comune, $azienda_pIVA, $nome);
+
+    $userArray = array();
+
+    while (mysqli_stmt_fetch($stmt)) {
+      $userArray[] = array(
+        "nome" => $nome,
+        "localeID" => $localeID,
+        "num_civico" => $num_civico,
+        "via" => $via,
+        "postiMax" => $postiMax,
+        "tipologia" => $tipologia,
+        "id_comune" => $id_comune,
+        "azienda_pIVA" => $azienda_pIVA
+      );
+    }
+    
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+    echo json_encode($userArray);
+
+  } catch (Exception $e) {
+    http_response_code(401);
+    echo json_encode(array("message" => "errore server - " . $e->getMessage()));
+  }
+
 
   //postiMax tipologia id_comune
 

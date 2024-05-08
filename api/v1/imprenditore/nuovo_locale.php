@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         throw new Exception("Il locale id è già presente nel database.");
       }
 
-      $insert_query = "INSERT INTO locale (localeID, num_civico, via, postiMax, tipologia, id_comune, azienda_pIVA) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      $insert_query = "INSERT INTO locale (localeID, nome, num_civico, via, postiMax, tipologia, id_comune, azienda_pIVA) VALUES (?, ?, ?, ?, ?, ?, ?)";
       $insert_stmt = mysqli_prepare($conn, $insert_query);
-      mysqli_stmt_bind_param($insert_stmt, 'ssssss', $data->localeID, $data->num_civico, $data->via, $data->postiMax, $data->tipologia, $data->id_comune, $data->azienda_pIVA);
+      mysqli_stmt_bind_param($insert_stmt, 'sssssss', $data->localeID, $data->nome, $data->num_civico, $data->via, $data->postiMax, $data->tipologia, $data->id_comune, $data->azienda_pIVA);
 
       if (!mysqli_stmt_execute($insert_stmt)) {
         throw new Exception("Errore durante l'inserimento dei dati: " . mysqli_error($conn));

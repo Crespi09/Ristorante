@@ -18,8 +18,8 @@ axios.post(`http://localhost:80/Ristorante/api/v1/locale/richiedi_dati.php`, { l
       via: response.data.via,
       posti: response.data.postiMax,
       tipologia: response.data.tipologia,
-      id_comune: response.data.id_comune,
-      partita_iva: response.data.azienda_pIVA
+      idComune: response.data.id_comune,
+      partitaIva: response.data.azienda_pIVA
     }
 
     postiMax=userData.posti;
@@ -37,9 +37,9 @@ axios.post(`http://localhost:80/Ristorante/api/v1/locale/richiedi_dati.php`, { l
 axios.post(`http://localhost:80/Ristorante/api/v1/locale/conto_prenotazioni.php`, { localeID: id })
   .then(response => {
     userData = {
-      numero_prenotazioni: response.data.numero_prenotazioni
+      nPrenotazioni: response.data.numero_prenotazioni
     }
-    postiLiberi=postiMax-userData.numero_prenotazioni;
+    postiLiberi=postiMax-userData.nPrenotazioni;
 
     posti.setAttribute('value', postiLiberi);
 
